@@ -184,15 +184,15 @@ namespace Satchels
             return (enchantment is SatchelInceptionEnchantment);
         }
 
-        public override bool ForEachItem(ForEachItemDelegate handler)
+        public override bool ForEachItem(ForEachItemDelegate handler, GetForEachItemPathDelegate getPath)
         {
-            if (!base.ForEachItem(handler))
+            if (!base.ForEachItem(handler, getPath))
                 return false;
 
-            if (!ForEachItemHelper.ApplyToList(Inventory, handler, true))
+            if (!ForEachItemHelper.ApplyToList(Inventory, handler, getPath, true))
                 return false;
 
-            if (!ForEachItemHelper.ApplyToList(Upgrades, handler, true))
+            if (!ForEachItemHelper.ApplyToList(Upgrades, handler, getPath, true))
                 return false;
 
             return true;

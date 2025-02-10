@@ -239,6 +239,7 @@ namespace SpaceCore
             events.GameLoop.Saving += Skills.OnSaving;
             events.GameLoop.Saved += Skills.OnSaved;
             events.GameLoop.DayStarted += Skills.DayStarted;
+            events.GameLoop.ReturnedToTitle += GameLoop_ReturnedToTitle;
             events.Display.MenuChanged += Skills.OnMenuChanged;
             SpaceEvents.ShowNightEndMenus += Skills.ShowLevelMenu;
             SpaceEvents.ServerGotClient += Skills.ClientJoined;
@@ -252,6 +253,13 @@ namespace SpaceCore
             BarsApi = SpaceCore.Instance.Helper.ModRegistry.GetApi<IExperienceBarsApi>("spacechase0.ExperienceBars");
             if (BarsApi is not null)
                 events.Display.RenderedHud += Skills.OnRenderedHud;
+        }
+
+        private static void GameLoop_ReturnedToTitle(object sender, ReturnedToTitleEventArgs e)
+        {
+            State.NewLevels.Clear();
+            State.Exp.Clear();
+            State.Buffs.Clear();
         }
 
         private static void DayStarted(object sender, DayStartedEventArgs e)

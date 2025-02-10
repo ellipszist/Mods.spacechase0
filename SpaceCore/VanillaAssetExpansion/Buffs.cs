@@ -33,6 +33,8 @@ namespace SpaceCore.VanillaAssetExpansion
         }
     }
 
+    // Not needed anymore since skillbuff handles all the custom buff stuff
+    /*
     [HarmonyPatch(typeof(Buff), nameof(Buff.OnRemoved))]
     public static class BuffOnRemovedCustomPatch
     {
@@ -58,6 +60,7 @@ namespace SpaceCore.VanillaAssetExpansion
             }
         }
     }
+    */
 
     [HarmonyPatch(typeof(BuffsDisplay), "getDescription", [typeof(Buff)])]
     public static class BuffsDisplayDescriptionExtrasPatch
